@@ -4,7 +4,7 @@ package smtp
 
 import (
 	"io"
-	"log"
+	//"log"
 	"strings"
 
 	"github.com/ian-kent/linkio"
