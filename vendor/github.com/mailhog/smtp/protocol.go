@@ -198,7 +198,7 @@ func (proto *Protocol) ProcessData(line string) (reply *Reply) {
 // It expects the line string to be a properly formed SMTP verb and arguments
 func (proto *Protocol) ProcessCommand(line string) (reply *Reply) {
 	line = strings.Trim(line, "\r\n")
-	proto.logf("Processing line: %s", line)
+	//proto.logf("Processing line: %s", line)
 
 	words := strings.Split(line, " ")
 	command := strings.ToUpper(words[0])
