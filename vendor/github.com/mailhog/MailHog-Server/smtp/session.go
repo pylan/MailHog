@@ -107,9 +107,11 @@ func (c *Session) acceptMessage(msg *data.SMTPMessage) (id string, err error) {
 }
 
 func (c *Session) logf(message string, args ...interface{}) {
-	message = strings.Join([]string{"[SMTP %s]", message}, " ")
-	args = append([]interface{}{c.remoteAddress}, args...)
-	log.Printf(message, args...)
+        // short circuited due to too much logging
+        return
+	//message = strings.Join([]string{"[SMTP %s]", message}, " ")
+	//args = append([]interface{}{c.remoteAddress}, args...)
+	//log.Printf(message, args...)
 }
 
 // Read reads from the underlying net.TCPConn
