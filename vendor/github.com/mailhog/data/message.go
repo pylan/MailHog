@@ -5,7 +5,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"io"
-	//"log"
+	"log"
 	"mime"
 	"strings"
 	"time"
@@ -16,12 +16,11 @@ import (
 var LogHandler func(message string, args ...interface{})
 
 func logf(message string, args ...interface{}) {
-        return
-	//if LogHandler != nil {
-	//	LogHandler(message, args...)
-	//} else {
-	//	log.Printf(message, args...)
-	//}
+	if LogHandler != nil {
+		LogHandler(message, args...)
+	} else {
+		log.Printf(message, args...)
+	}
 }
 
 // MessageID represents the ID of an SMTP message including the hostname part
@@ -283,7 +282,7 @@ func PathFromString(path string) *Path {
 
 // ContentFromString parses SMTP content into separate headers and body
 func ContentFromString(data string) *Content {
-	logf("Parsing Content from string: '%s'", data)
+	//logf("Parsing Content from string: '%s'", data)
 	x := strings.SplitN(data, "\r\n\r\n", 2)
 	h := make(map[string][]string, 0)
 

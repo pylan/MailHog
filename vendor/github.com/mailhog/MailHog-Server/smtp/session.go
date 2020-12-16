@@ -4,7 +4,7 @@ package smtp
 
 import (
 	"io"
-	//"log"
+	"log"
 	"strings"
 
 	"github.com/ian-kent/linkio"
@@ -107,11 +107,9 @@ func (c *Session) acceptMessage(msg *data.SMTPMessage) (id string, err error) {
 }
 
 func (c *Session) logf(message string, args ...interface{}) {
-        // short circuited due to too much logging
-        return
-	//message = strings.Join([]string{"[SMTP %s]", message}, " ")
-	//args = append([]interface{}{c.remoteAddress}, args...)
-	//log.Printf(message, args...)
+	message = strings.Join([]string{"[SMTP %s]", message}, " ")
+	args = append([]interface{}{c.remoteAddress}, args...)
+	log.Printf(message, args...)
 }
 
 // Read reads from the underlying net.TCPConn
@@ -133,7 +131,7 @@ func (c *Session) Read() bool {
 	text := string(buf[0:n])
 	logText := strings.Replace(text, "\n", "\\n", -1)
 	logText = strings.Replace(logText, "\r", "\\r", -1)
-	c.logf("Received %d bytes: '%s'\n", n, logText)
+	//c.logf("Received %d bytes: '%s'\n", n, logText)
 
 	c.line += text
 
@@ -159,7 +157,7 @@ func (c *Session) Write(reply *smtp.Reply) {
 	for _, l := range lines {
 		logText := strings.Replace(l, "\n", "\\n", -1)
 		logText = strings.Replace(logText, "\r", "\\r", -1)
-		c.logf("Sent %d bytes: '%s'", len(l), logText)
+		//c.logf("Sent %d bytes: '%s'", len(l), logText)
 		c.writer.Write([]byte(l))
 	}
 }
