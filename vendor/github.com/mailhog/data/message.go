@@ -5,7 +5,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"io"
-	"log"
+	//"log"
 	"mime"
 	"strings"
 	"time"
@@ -16,11 +16,12 @@ import (
 var LogHandler func(message string, args ...interface{})
 
 func logf(message string, args ...interface{}) {
-	if LogHandler != nil {
-		LogHandler(message, args...)
-	} else {
-		log.Printf(message, args...)
-	}
+        return
+	//if LogHandler != nil {
+	//	LogHandler(message, args...)
+	//} else {
+	//	log.Printf(message, args...)
+	//}
 }
 
 // MessageID represents the ID of an SMTP message including the hostname part
