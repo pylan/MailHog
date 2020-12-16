@@ -72,7 +72,7 @@ func createAPIv1(conf *config.Config, r *pat.Router) *APIv1 {
 				log.Println("Got message in APIv1 event stream")
 				bytes, _ := json.MarshalIndent(msg, "", "  ")
 				json := string(bytes)
-				log.Printf("Sending content: %s\n", json)
+				//log.Printf("Sending content: %s\n", json)
 				apiv1.broadcast(json)
 			case <-keepaliveTicker:
 				apiv1.keepalive()
